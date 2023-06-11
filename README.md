@@ -1,0 +1,1 @@
+# tool-clear-image-of-deleted-products
