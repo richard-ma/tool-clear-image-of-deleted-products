@@ -35,8 +35,17 @@ class App(app.App):
                 image_filename = os.path.join(upload_dir, image)
                 if os.path.exists(image_filename):
                     os.remove(image_filename)
+                    
+                    # detect same product images
+                    dir_name = os.path.dirname(image_filename)
+                    file_name = os.path.basename(image_filename)
+                    main_name, ext_name = os.path.splitext(file_name)
+                    for f in os.listdir(dir_name):
+                        if f.startswith(main_name) and f.endswith(ext_name):
+                            os.remove(os.path.join(dir_name, f))
                 else:
                     print("Cann't find {}".format(image_filename))
+
 
 if __name__ == "__main__":
     app = App()
